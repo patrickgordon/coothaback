@@ -1,0 +1,32 @@
+.root {
+
+}
+
+.primary {
+	width: 13.75rem;
+	color: #fff;
+	background-color: #02b3e4;
+	border: 0.125rem solid transparent;
+	box-shadow: 8px 10px 20px 0px rgba(46,61,73,0.15);
+	display: block;
+	cursor: pointer;
+	appearance: none;
+	user-select: none;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: top;
+	text-decoration: none;
+	vertical-align: middle;
+	height: 3rem;
+	padding: 0 0.5rem;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 600;
+	font-size: 0.8125rem;
+	line-height: 2.625rem;
+	-webkit-font-smoothing: antialiased;
+	border-radius: 0.25rem;
+	letter-spacing: 0.09375rem;
+	transition: all 0.3s ease;
+}
+
