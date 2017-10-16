@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Button from "./UI/Button";
-import logo from './logo.svg';
 import styles from './App.css';
 
 class App extends Component {
@@ -9,22 +8,41 @@ class App extends Component {
 		return (
 			<div className={styles.root}>
 				<header className={styles.header}>
-					<img src={logo} className={styles.logo} alt="logo" />
-					<h1 className={styles.title}>Welcome to React</h1>
-				</header>
-				<p className={styles.intro}>
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
+					<div className="grid-center">
+						<div className="col-sm-6">
+							<div className={styles.title}>
+								<h1>Yeah, but what's ya cootha back time?</h1>
+							</div>
+						</div>
+					</div>
 
-				<div className="container">
-					<div className="row center-xs">
-						<div className="col-xs-6">
+					<div className="grid-center">
+						<div className="col-sm-6">
 							<Button>
-								Im a button
+								Connect to Strava
 							</Button>
 						</div>
 					</div>
+				</header>
+
+				<div className={styles.content}>
+					<div className="grid">
+						<div className="col">
+							Cards go here, of course.
+						</div>
+						<div className="col">
+							Cards go here, of course.
+						</div>
+					</div>
 				</div>
+
+				<footer className={styles.footer}>
+					<div className="grid-center">
+						<div className="col-sm-6">
+							Made by <a href="//patrick-gordon.com">Patrick Gordon</a>.
+						</div>
+					</div>
+				</footer>
 			</div>
 		);
 	}

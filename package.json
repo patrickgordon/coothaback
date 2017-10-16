@@ -23,8 +23,8 @@
     "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
-    "flexboxgrid": "^6.3.1",
     "fs-extra": "3.0.1",
+    "gridlex": "^2.4.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
@@ -44,6 +44,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "fakeapi": "json-server --watch db.json --port 3001",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
