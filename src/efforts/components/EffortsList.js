@@ -39,7 +39,10 @@ class EffortsList extends Component {
 					const effortTimeReadable = formatTime(effort.movingTime);
 					return (
 					<div key={effort.id} className="col-4_xs-12_sm-6">
-						<Card title={effortTimeReadable} />
+						<Card
+							pillContent="Personal Best"
+							title={effortTimeReadable} 
+						/>
 					</div>
 				)})}
 			</div>
