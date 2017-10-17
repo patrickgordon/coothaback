@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Button from "./UI/Button";
+import EffortsList from "./efforts/components/EffortsList";
 import styles from './App.css';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
 			<div className={styles.root}>
 				<header className={styles.header}>
 					<div className="grid-center">
-						<div className="col-sm-6">
+						<div className="col">
 							<div className={styles.title}>
 								<h1>Yeah, but what's ya cootha back time?</h1>
 							</div>
@@ -17,7 +18,7 @@ class App extends Component {
 					</div>
 
 					<div className="grid-center">
-						<div className="col-sm-6">
+						<div className="col">
 							<Button>
 								Connect to Strava
 							</Button>
@@ -26,20 +27,15 @@ class App extends Component {
 				</header>
 
 				<div className={styles.content}>
-					<div className="grid">
-						<div className="col">
-							Cards go here, of course.
-						</div>
-						<div className="col">
-							Cards go here, of course.
-						</div>
-					</div>
+					<EffortsList />
 				</div>
 
 				<footer className={styles.footer}>
-					<div className="grid-center">
-						<div className="col-sm-6">
-							Made by <a href="//patrick-gordon.com">Patrick Gordon</a>.
+					<div className="grid">
+						<div className="col">
+							<span role="img" aria-label="bike emoji">🚲 </span>
+							Made by <a href="//patrick-gordon.com">Patrick Gordon</a>
+							<span role="img" aria-label="bike emoji"> 🚲</span>
 						</div>
 					</div>
 				</footer>

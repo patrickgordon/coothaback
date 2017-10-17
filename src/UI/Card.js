@@ -2,10 +2,17 @@ import React from 'react';
 
 import styles from './Card.css';
 
-const Card = () => {
+const Card = ({ title }) => {
 	return (
-		<div>
-			
+		<div className={styles.root}>
+			<div className={styles.header}>
+				<div className={styles.overlay}></div>
+			</div>
+			<div className={styles.title}>
+				<h4>{title}</h4>
+			</div>
+			<div className={styles.actions}>
+			</div>
 		</div>
 	);
 };
