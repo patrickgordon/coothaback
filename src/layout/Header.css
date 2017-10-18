@@ -1,0 +1,19 @@
+.root {
+	background-color: #292F36;
+	padding: 24px;
+	color: white;
+}
+
+.title { 
+	margin-bottom: 12px;
+}
+
+.title > h1 {
+	font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 500px) {
+	.title > h1 {
+		font-size: 1.2rem;
+	}
+}

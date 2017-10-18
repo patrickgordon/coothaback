@@ -1,5 +1,12 @@
 .root {
-
+	text-rendering: auto;
+	word-spacing: normal;
+	text-indent: 0px;
+	text-shadow: none;
+	margin: 0em;
+	font: 11px system-ui;
+	align-items: flex-start;
+	box-sizing: border-box;
 }
 
 .primary {

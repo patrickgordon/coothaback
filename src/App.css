@@ -5,36 +5,7 @@
 	min-height: 100vh;
 }
 
-.header {
-	background-color: #292F36;
-	padding: 24px;
-	color: white;
-}
-
-.title { 
-	margin-bottom: 12px;
-}
-
-.title > h1 {
-	font-size: 1.5rem;
-}
-
-@media only screen and (max-width: 500px) {
-	.title > h1 {
-		font-size: 1.2rem;
-	}
-}
-
-.intro {
-	font-size: large;
-}
-
 .content {
 	flex: 1;
 	padding: 24px;
-}
-
-.footer {
-	font-size: 0.80rem;
-	padding: 24px 24px 0px 24px;
 }

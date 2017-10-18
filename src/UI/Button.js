@@ -1,11 +1,20 @@
 import React from 'react';
+import classNames from "classnames";
+
 import styles from "./Button.css";
 
-const Button = ({ children }) => {
+const Button = ({ href, children }) => {
+	const Component = href ? "a" : "button";
+
+	const classes = classNames(
+		[styles.root],
+		[styles.primary]
+	);
+
 	return (
-		<button className={styles.primary}>
+		<Component href={href} className={classes}>
 			{children}
-		</button>
+		</Component>
 	);
 };
 

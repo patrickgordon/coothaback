@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import Card from "../../UI/Card";
+import Card from "../../ui/Card";
 import styles from "./EffortsList.css";
 import { fetchEfforts } from "../effortsActions";
 
-class EffortsList extends Component {
+export class EffortsList extends Component {
 	componentDidMount() {
 		const { hasEfforts, actions: { fetchEfforts } } = this.props;
 
@@ -29,11 +29,10 @@ class EffortsList extends Component {
 			return `${minutes} minutes ${seconds} seconds`;
 		}
 
-
 		return (
 			<div className="grid">
 				{!hasEfforts && 
-				<h1 className={styles.noEfforts}>No efforts on Cootha, ya pleb.</h1>
+				<h1 data-id="noEffortsHeader" className={styles.noEfforts}>No efforts on Cootha, ya pleb.</h1>
 				}
 				{hasEfforts && efforts.map(effort => {
 					const effortTimeReadable = formatTime(effort.movingTime);
@@ -50,7 +49,7 @@ class EffortsList extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
 	hasEfforts: !!(state.efforts.results.length > 0),
 	efforts: state.efforts.results
 });
