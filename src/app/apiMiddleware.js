@@ -1,4 +1,5 @@
 import { camelizeKeys } from "humps";
+import { normalize } from "normalizr";
 
 export const CALL_API = "callAPI";
 export const BASE_URL = "http://localhost:3001";
@@ -10,13 +11,17 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 		return next(action);
 	}
 
+	const { 
+		fetchFn,
+		normalizeFn
+	} = middlewareArgs;
 	const { dispatch } = store;
-	const { fetchFn } = middlewareArgs;
 
 	const { 
 		types,
 		endpoint,
 		method,
+		schema,
 		// body,
 	} = apiAction;
 
@@ -29,21 +34,27 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 		method,
 	}).then(response => {
 		return response.json().then(json => {
-			const result = camelizeKeys(json);
+			const data = camelizeKeys(json);
+			const normalizedData = normalizeFn(data, schema);
 
 			dispatch({
 				type: successType,
-				result
+				payload: normalizedData
 			});
 		});
 	}).catch(error => {
-		console.log(error);
-		// TODO: finish error handling
+		return error.json().then(error => {
+			dispatch({
+				type: failureType,
+				error
+			})
+		});
 	});
 };
 
 const apiMiddleware = middleware({
-	fetchFn: fetch
+	fetchFn: fetch,
+	normalizeFn: normalize
 });
 
 export default apiMiddleware;

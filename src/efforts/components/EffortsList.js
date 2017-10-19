@@ -3,8 +3,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import Card from "../../ui/Card";
-import styles from "./EffortsList.css";
+import formatTime from "../../utils/formatTime";
 import { fetchEfforts } from "../effortsActions";
+import { getMappedEfforts } from "../effortsSelectors";
+
+import styles from "./EffortsList.css";
 
 export class EffortsList extends Component {
 	componentDidMount() {
@@ -18,17 +21,6 @@ export class EffortsList extends Component {
 	render() {
 		const { hasEfforts, efforts } = this.props;
 		
-		// TODO: Move to own helper.
-		const formatTime = (secondsToConvert) => {
-			var hours = Math.floor(secondsToConvert / 3600);
-			var minutes = Math.floor((secondsToConvert - (hours * 3600)) / 60);
-			var seconds = secondsToConvert - (hours * 3600) - (minutes * 60);
-		
-			if (minutes < 10) { minutes = "0"+minutes; }
-			if (seconds < 10) { seconds = "0"+seconds; }
-			return `${minutes} minutes ${seconds} seconds`;
-		}
-
 		return (
 			<div className="grid">
 				{!hasEfforts && 
@@ -49,13 +41,18 @@ export class EffortsList extends Component {
 	}
 }
 
-export const mapStateToProps = state => ({
-	hasEfforts: !!(state.efforts.results.length > 0),
-	efforts: state.efforts.results
-});
+export const makeMapStateToProps = (getMappedEffortsFn = getMappedEfforts) => {
+	const mapStateToProps = state => ({
+		hasEfforts: !!(state.efforts.keys.length > 0),
+		efforts: getMappedEffortsFn(state)
+	});
+
+	return mapStateToProps;
+};
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators({ fetchEfforts }, dispatch)
 });
 
+const mapStateToProps = makeMapStateToProps();
 export default connect(mapStateToProps, mapDispatchToProps)(EffortsList);

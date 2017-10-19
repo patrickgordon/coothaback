@@ -1,26 +1,15 @@
-import { camelizeKeys } from "humps";
+import { effortList } from "../app/schemas";
+import { CALL_API } from "../app/apiMiddleware";
 
 export const FETCH_REQUEST = "Efforts.FETCH_REQUEST";
 export const FETCH_SUCCESS = "Efforts.FETCH_SUCCESS";
 export const FETCH_FAILURE = "Efforts.FETCH_FAILURE";
 
-export const fetchEfforts = () => (dispatch) => {
-	dispatch({
-		type: FETCH_REQUEST
-	});
-
-	fetch("http://localhost:3001/efforts").then((response) => {
-		response.json().then(json => {
-			const result = camelizeKeys(json);
-			dispatch({
-				type: FETCH_SUCCESS,
-				result
-			})
-		});
-	}).catch(error => {
-		dispatch({
-			type: FETCH_FAILURE,
-			error
-		})
-	})
-}
+export const fetchEfforts = () => ({
+	[CALL_API]: {
+		types: [FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE],
+		endpoint: "/efforts",
+		method: "GET",
+		schema: effortList
+	}
+});

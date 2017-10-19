@@ -4,7 +4,7 @@ import {
 } from "./effortsActions";
 
 const initialState = {
-	results: []
+	keys: []
 }
 
 export const effortsReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ export const effortsReducer = (state = initialState, action) => {
 		case FETCH_SUCCESS:
 			return {
 				...state,
-				results: action.result
+				keys: action.payload.result
 			}
 		
 		case FETCH_REQUEST:

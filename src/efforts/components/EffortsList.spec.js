@@ -1,14 +1,13 @@
 import React from "react";
-import sinon from "sinon";
 import { shallow } from "enzyme";
 
 import { 
 	EffortsList as NotConnectedEffortsList,
-	mapStateToProps
+	makeMapStateToProps
 } from "./EffortsList";
 
 const setup = (propsOverrides = {}) => {
-	const fetchEffortsSpy = sinon.spy();
+	const fetchEffortsSpy = jest.fn();
 
 	const props = {
 		hasEfforts: false,
@@ -18,13 +17,19 @@ const setup = (propsOverrides = {}) => {
 		},
 		...propsOverrides
 	}
+
 	const wrapper = () => shallow(<NotConnectedEffortsList {...props} />)
+	const wrapperInstance = () => wrapper().instance();
+
+	const getMappedEffortsFn = jest.fn();
 
 	return {
 		wrapper,
+		wrapperInstance,
 		header: () => wrapper().find("[data-id='noEffortsHeader']"),
 		cards: () => wrapper().find("Card"),
-		fetchEffortsSpy
+		fetchEffortsSpy,
+		mapStateToProps: makeMapStateToProps(getMappedEffortsFn)
 	};
 }
 
@@ -49,20 +54,42 @@ describe("renders:", () => {
 	});
 });
 
+describe("lifecycle:", () => {
+	describe("componentDidMount:", () => {
+		it("should call fetchEfforts if there are no efforts when the component mounts", () => {
+			const { wrapperInstance, fetchEffortsSpy } = setup();
+			const instance = wrapperInstance()
+			fetchEffortsSpy.mockClear();
+			instance.componentDidMount();
+			expect(fetchEffortsSpy.mock.calls.length).toEqual(1);
+		});
+
+		it("should not call fetchEfforts if there are efforts when the component mounts", () => {
+			const { wrapperInstance, fetchEffortsSpy } = setup({ hasEfforts: true });
+			const instance = wrapperInstance()
+			fetchEffortsSpy.mockClear();
+			instance.componentDidMount();
+			expect(fetchEffortsSpy.mock.calls.length).toEqual(0);
+		});
+	});
+});
+
 describe("redux:", () => {
 	it("should map hasEfforts to true if there are efforts", () => {
+		const { mapStateToProps } = setup();
+
 		const mockState = {
-			efforts: { results: [{ id: 123 }] }
+			efforts: { keys: [123] }
 		}
 
 		expect(mapStateToProps(mockState).hasEfforts).toEqual(true);
 	});
 
 	it("should map hasEfforts to false if there are no efforts", () => {
+		const { mapStateToProps } = setup();		
 		const mockState = {
-			efforts: { results: [] }
+			efforts: { keys: [] }
 		}
-
 		expect(mapStateToProps(mockState).hasEfforts).toEqual(false);
 	});
 })

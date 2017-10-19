@@ -26,10 +26,13 @@ const setup = () => {
 	const successfulResponse = {
 		json: () => Promise.resolve(result)
 	}
+	
 	const fetchStub = sinon.stub().returns(Promise.resolve(successfulResponse));
+	const normalizeStub = sinon.stub().returns(result)
 	
 	const middlewareArgs = {
-		fetchFn: fetchStub
+		fetchFn: fetchStub,
+		normalizeFn: normalizeStub
 	}
 
 	return {
@@ -69,12 +72,12 @@ it("should call fetch with the full URL and the configuration method", () => {
 });
 
 describe("successful requests:", () => {
-	it("should dispatch a success action with the result", () => {
+	it("should dispatch a success action with the noramlized result", () => {
 		const { middlewareArgs, result, mockStore, dispatchSpy, nextStub, apiAction } = setup();
 		return middleware(middlewareArgs)(mockStore)(nextStub)(apiAction).then(() => {
 			expect(dispatchSpy.secondCall.args).toEqual([{
 				type: "SUCCESS",
-				result
+				payload: result
 			}])
 		});
 		
