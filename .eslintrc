@@ -1,5 +1,19 @@
 {
 	"extends": "react-app",
+	"rules": {
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"react/no-unescaped-entities": "off",
+		"react/prop-types": "off",
+		"react/jsx-indent": [2, "tab"],
+		"no-tabs": "off",
+		"space-before-function-paren": ["error", {  
+			"anonymous": "always",
+			"named": "ignore",
+			"asyncArrow": "ignore"
+		}],
+		"semi": "error",
+		"quotes": "error"
+	},
 	"overrides": [
 		{
 			"files": ["*.spec.js"],

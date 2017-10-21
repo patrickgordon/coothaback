@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import classNames from "classnames";
 
 const Icon = (props) => {
@@ -13,7 +13,7 @@ const Icon = (props) => {
 		{
 			"fa-spin": isSpin
 		}
-	)
+	);
 
 	return (
 		<i className={classes}></i>

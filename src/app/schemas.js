@@ -8,6 +8,6 @@ const effort = new schema.Entity("efforts", {
 	athlete,
 	activity,
 	segment
-})
+});
 
 export const effortList = new schema.Array(effort);

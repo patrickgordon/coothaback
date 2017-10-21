@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import EffortsList from "./efforts/components/EffortsList";
 import Footer from "./layout/Footer";
 import Header from "./layout/Header";
-import styles from './App.css';
+import styles from "./App.css";
 
 class App extends Component {
 	render() {

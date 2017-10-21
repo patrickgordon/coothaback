@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 import Button from "../ui/Button";
 import styles from "./Header.css";
 
 const Header = () => {
-	const stravaLink = 'https://www.strava.com/oauth/authorize?client_id=15533&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=view_private';
+	const stravaLink = "https://www.strava.com/oauth/authorize?client_id=15533&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=view_private";
 	return (
 		<header className={styles.root}>
 			<div className="grid-center">

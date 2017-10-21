@@ -1,5 +1,3 @@
-import sinon from "sinon";
-
 import { 
 	BASE_URL,
 	CALL_API,
@@ -7,8 +5,8 @@ import {
 } from "./apiMiddleware";
 
 const setup = () => {
-	const dispatchSpy = sinon.spy();
-	const nextStub = sinon.stub();
+	const dispatchSpy = jest.fn();
+	const nextStub = jest.fn();
 
 	const mockStore = {
 		dispatch: dispatchSpy
@@ -20,20 +18,20 @@ const setup = () => {
 			endpoint: "/test",
 			method: "GET"
 		}
-	}
+	};
 
-	const result = [{ id: 123 }]
+	const result = [{ id: 123 }];
 	const successfulResponse = {
 		json: () => Promise.resolve(result)
-	}
+	};
 	
-	const fetchStub = sinon.stub().returns(Promise.resolve(successfulResponse));
-	const normalizeStub = sinon.stub().returns(result)
+	const fetchStub = jest.fn().mockReturnValue(Promise.resolve(successfulResponse));
+	const normalizeStub = jest.fn().mockReturnValue(result);
 	
 	const middlewareArgs = {
 		fetchFn: fetchStub,
 		normalizeFn: normalizeStub
-	}
+	};
 
 	return {
 		dispatchSpy,
@@ -43,17 +41,17 @@ const setup = () => {
 		fetchStub,
 		apiAction,
 		result
-	}
-}
+	};
+};
 
 it("should let non API actions fall through", () => {
 	const { middlewareArgs, mockStore, nextStub } = setup();
 
 	const nonApiAction = {
 		type: "MY_ACTION"
-	}
+	};
 
-	nextStub.withArgs(nonApiAction).returns("fall through")
+	nextStub.mockReturnValue("fall through");
 
 	const result = middleware(middlewareArgs)(mockStore)(nextStub)(nonApiAction);
 	expect(result).toEqual("fall through");
@@ -62,24 +60,24 @@ it("should let non API actions fall through", () => {
 it("should dispatch a request action", () => {
 	const { middlewareArgs, mockStore, dispatchSpy, nextStub, apiAction } = setup();
 	middleware(middlewareArgs)(mockStore)(nextStub)(apiAction);
-	expect(dispatchSpy.firstCall.args).toEqual([{ type: "REQUEST" }])
+	expect(dispatchSpy).toBeCalledWith({ type: "REQUEST" });
 });
 
 it("should call fetch with the full URL and the configuration method", () => {
 	const { middlewareArgs, fetchStub, mockStore, nextStub, apiAction } = setup();
 	middleware(middlewareArgs)(mockStore)(nextStub)(apiAction);
-	expect(fetchStub.firstCall.args).toEqual([`${BASE_URL}/test`, { method: "GET" }])
+	expect(fetchStub).toBeCalledWith(`${BASE_URL}/test`, { method: "GET" });
 });
 
 describe("successful requests:", () => {
 	it("should dispatch a success action with the noramlized result", () => {
 		const { middlewareArgs, result, mockStore, dispatchSpy, nextStub, apiAction } = setup();
 		return middleware(middlewareArgs)(mockStore)(nextStub)(apiAction).then(() => {
-			expect(dispatchSpy.secondCall.args).toEqual([{
+			expect(dispatchSpy).toBeCalledWith({
 				type: "SUCCESS",
 				payload: result
-			}])
+			});
 		});
 		
-	})
+	});
 });

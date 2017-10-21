@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -26,13 +26,13 @@ export class EffortsList extends Component {
 				{hasEfforts && efforts.map(effort => {
 					const effortTimeReadable = formatTime(effort.movingTime);
 					return (
-					<div key={effort.id} className="col-4_xs-12_sm-6">
-						<Card
+						<div key={effort.id} className="col-4_xs-12_sm-6">
+							<Card
 							pillContent="Personal Best"
 							title={effortTimeReadable} 
 						/>
-					</div>
-				)})}
+						</div>
+				);})}
 			</div>
 		);
 	}

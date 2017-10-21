@@ -28,7 +28,7 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 	const [requestType, successType, failureType] = types;
 	const fullURL = `${BASE_URL}${endpoint}`;
 
-	dispatch({ type: requestType })
+	dispatch({ type: requestType });
 	
 	return fetchFn(fullURL, { 
 		method,
@@ -47,7 +47,7 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 			dispatch({
 				type: failureType,
 				error
-			})
+			});
 		});
 	});
 };

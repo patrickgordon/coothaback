@@ -16,9 +16,9 @@ const setup = (propsOverrides = {}) => {
 			fetchEfforts: fetchEffortsSpy
 		},
 		...propsOverrides
-	}
+	};
 
-	const wrapper = () => shallow(<NotConnectedEffortsList {...props} />)
+	const wrapper = () => shallow(<NotConnectedEffortsList {...props} />);
 	const wrapperInstance = () => wrapper().instance();
 
 	const getMappedEffortsFn = jest.fn();
@@ -31,7 +31,7 @@ const setup = (propsOverrides = {}) => {
 		fetchEffortsSpy,
 		mapStateToProps: makeMapStateToProps(getMappedEffortsFn)
 	};
-}
+};
 
 describe("renders:", () => {
 	it("should render a header if there are no efforts", () => {
@@ -48,8 +48,8 @@ describe("renders:", () => {
 		const mockEfforts = [
 			{ id: 123, movingTime: 123 },
 			{ id: 456, movingTime: 456 }
-		]
-		const { cards } = setup({ hasEfforts: true, efforts: mockEfforts })
+		];
+		const { cards } = setup({ hasEfforts: true, efforts: mockEfforts });
 		expect(cards()).toHaveLength(2);
 	});
 });
@@ -58,7 +58,7 @@ describe("lifecycle:", () => {
 	describe("componentDidMount:", () => {
 		it("should call fetchEfforts when the component mounts", () => {
 			const { wrapperInstance, fetchEffortsSpy } = setup();
-			const instance = wrapperInstance()
+			const instance = wrapperInstance();
 			fetchEffortsSpy.mockClear();
 			instance.componentDidMount();
 			expect(fetchEffortsSpy.mock.calls.length).toEqual(1);
@@ -72,7 +72,7 @@ describe("redux:", () => {
 
 		const mockState = {
 			efforts: { keys: [123] }
-		}
+		};
 
 		expect(mapStateToProps(mockState).hasEfforts).toEqual(true);
 	});
@@ -81,7 +81,7 @@ describe("redux:", () => {
 		const { mapStateToProps } = setup();		
 		const mockState = {
 			efforts: { keys: [] }
-		}
+		};
 		expect(mapStateToProps(mockState).hasEfforts).toEqual(false);
 	});
-})
+});
