@@ -19,7 +19,7 @@ export const authenticationReducer = (state = initialState, action) => {
 				[DEFAULT_KEY]: generateCacheTTL(),
 				accessToken: action.payload.result
 			};
-		
+
 		case FETCH_REQUEST:
 		default:
 			return state;

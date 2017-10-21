@@ -18,7 +18,7 @@ export const effortsReducer = (state = initialState, action) => {
 				[DEFAULT_KEY]: generateCacheTTL(),
 				keys: action.payload.result
 			};
-		
+
 		case FETCH_REQUEST:
 		default:
 			return state;

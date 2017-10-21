@@ -1,7 +1,7 @@
-import { 
+import {
 	BASE_URL,
 	CALL_API,
-	middleware 
+	middleware
 } from "./apiMiddleware";
 
 const setup = () => {
@@ -24,10 +24,10 @@ const setup = () => {
 	const successfulResponse = {
 		json: () => Promise.resolve(result)
 	};
-	
+
 	const fetchStub = jest.fn().mockReturnValue(Promise.resolve(successfulResponse));
 	const normalizeStub = jest.fn().mockReturnValue(result);
-	
+
 	const middlewareArgs = {
 		fetchFn: fetchStub,
 		normalizeFn: normalizeStub
@@ -78,6 +78,6 @@ describe("successful requests:", () => {
 				payload: result
 			});
 		});
-		
+
 	});
 });

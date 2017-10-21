@@ -12,13 +12,13 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 		return next(action);
 	}
 
-	const { 
+	const {
 		fetchFn,
 		normalizeFn
 	} = middlewareArgs;
 	const { dispatch } = store;
 
-	const { 
+	const {
 		types,
 		endpoint,
 		method,
@@ -30,8 +30,8 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 	const fullURL = `${BASE_URL}${endpoint}`;
 
 	dispatch({ type: requestType });
-	
-	return fetchFn(fullURL, { 
+
+	return fetchFn(fullURL, {
 		method,
 	}).then(response => {
 		return response.json().then(json => {

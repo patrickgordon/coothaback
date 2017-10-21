@@ -12,7 +12,8 @@
 			"asyncArrow": "ignore"
 		}],
 		"semi": "error",
-		"quotes": "error"
+		"quotes": "error",
+		"no-trailing-spaces": "error"
 	},
 	"overrides": [
 		{

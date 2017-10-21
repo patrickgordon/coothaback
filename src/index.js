@@ -6,7 +6,7 @@ import { persistStore } from "redux-persist";
 import App from "./App";
 import BigLoader from "./layout/BigLoader";
 import configureStore from "./app/configureStore";
-import registerServiceWorker from "./registerServiceWorker";	
+import registerServiceWorker from "./registerServiceWorker";
 
 import "./index.css";
 import "gridlex/docs/gridlex.min.css";

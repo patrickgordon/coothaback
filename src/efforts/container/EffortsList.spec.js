@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { 
+import {
 	EffortsList as NotConnectedEffortsList,
 	makeMapStateToProps
 } from "./EffortsList";
@@ -38,7 +38,7 @@ describe("renders:", () => {
 		const { header } = setup({ hasEfforts: true });
 		expect(header().exists()).toEqual(false);
 	});
-	
+
 	it("should not render a header if there are efforts", () => {
 		const { header } = setup({ hasEfforts: false });
 		expect(header().exists()).toEqual(true);
@@ -78,7 +78,7 @@ describe("redux:", () => {
 	});
 
 	it("should map hasEfforts to false if there are no efforts", () => {
-		const { mapStateToProps } = setup();		
+		const { mapStateToProps } = setup();
 		const mockState = {
 			efforts: { keys: [] }
 		};

@@ -17,10 +17,10 @@ export class EffortsList extends Component {
 
 	render() {
 		const { hasEfforts, efforts } = this.props;
-		
+
 		return (
 			<div className="grid">
-				{!hasEfforts && 
+				{!hasEfforts &&
 				<h1 data-id="noEffortsHeader" className={styles.noEfforts}>No efforts on Cootha, ya pleb.</h1>
 				}
 				{hasEfforts && efforts.map(effort => {
@@ -29,7 +29,7 @@ export class EffortsList extends Component {
 						<div key={effort.id} className="col-4_xs-12_sm-6">
 							<Card
 							pillContent="Personal Best"
-							title={effortTimeReadable} 
+							title={effortTimeReadable}
 						/>
 						</div>
 				);})}
