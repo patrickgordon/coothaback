@@ -20,8 +20,8 @@ export const authorize = (code) => (dispatch, getState) => {
 			method: "POST",
 			schema: authentication,
 			body: {
-				clientId: 15533,
-				clientSecret: "c81b155b6302e62b4f01626403eeec40f5e6b73d", // TODO: Make this come from env variables
+				clientId: process.env.REACT_APP_STRAVA_CLIENT_ID,
+				clientSecret: process.env.REACT_APP_STRAVA_CLIENT_SECRET,
 				code
 			}
 		}

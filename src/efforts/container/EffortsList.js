@@ -26,8 +26,7 @@ export class EffortsList extends Component {
 	render() {
 		const { isAuthenticated, hasEfforts, efforts } = this.props;
 		const banter = isAuthenticated ? "No efforts on Cootha, ya choom." : "Uhh, maybe try to connect with Strava first?";
-		// TODO: Make the redirection URL dynamic based on PROD vs DEV
-		const stravaLink = "https://www.strava.com/oauth/authorize?client_id=15533&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=view_private";
+		const stravaLink = `https://www.strava.com/oauth/authorize?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_STRAVA_REDIRECT_URL}&scope=view_private`;
 
 		return (
 			<div className="grid">
