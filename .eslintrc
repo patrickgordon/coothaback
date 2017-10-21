@@ -13,7 +13,9 @@
 		}],
 		"semi": "error",
 		"quotes": "error",
-		"no-trailing-spaces": "error"
+		"no-trailing-spaces": "error",
+		"object-curly-spacing": ["error", "always"],
+		"indent": ["error", "tab"]
 	},
 	"overrides": [
 		{

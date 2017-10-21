@@ -2,15 +2,34 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import { makeGetQueryParams } from "../../utils/utilitySelectors";
 import { authorize as authorizeAction } from "../authenticationActions";
 
 import Icon from "../../ui/Icon";
 
-class TokenExchange extends Component {
+export class TokenExchange extends Component {
 	componentDidMount() {
 		// TODO: Filter query string param to get "code";
-		const { match, actions: { authorize } } = this.props;
-		authorize("fake code");
+		const {
+			actions: { authorize },
+			isAuthenticated,
+			history: { push },
+			queryParams: { code },
+		} = this.props;
+
+		if (isAuthenticated) {
+			push("/");
+		}
+
+		authorize(code);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { history: { push } } = this.props;
+		const { isAuthenticated } = nextProps;
+		if (isAuthenticated) {
+			push("/");
+		}
 	}
 
 	render() {
@@ -23,8 +42,20 @@ class TokenExchange extends Component {
 	}
 }
 
+export const makeMapStateToProps = (makeGetQueryParamsFn = makeGetQueryParams) => {
+	const getQueryParams = makeGetQueryParamsFn();
+
+	const mapStateToProps = (state, ownProps)=> ({
+		isAuthenticated: !!(state.authentication && state.authentication.accessToken),
+		queryParams: getQueryParams(state, ownProps)
+	});
+
+	return mapStateToProps;
+};
+
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators({ authorize: authorizeAction }, dispatch)
 });
 
-export default connect(undefined, mapDispatchToProps)(TokenExchange);
+const mapStateToProps = makeMapStateToProps();
+export default connect(mapStateToProps, mapDispatchToProps)(TokenExchange);

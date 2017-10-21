@@ -28,11 +28,11 @@ export class EffortsList extends Component {
 					return (
 						<div key={effort.id} className="col-4_xs-12_sm-6">
 							<Card
-							pillContent="Personal Best"
-							title={effortTimeReadable}
-						/>
+								pillContent="Personal Best"
+								title={effortTimeReadable}
+							/>
 						</div>
-				);})}
+					);})}
 			</div>
 		);
 	}

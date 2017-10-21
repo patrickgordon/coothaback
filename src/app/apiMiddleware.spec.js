@@ -5,11 +5,19 @@ import {
 } from "./apiMiddleware";
 
 const setup = () => {
+	const mockState = {
+		authentication: {
+			accessToken: null
+		}
+	};
+
 	const dispatchSpy = jest.fn();
 	const nextStub = jest.fn();
+	const getStateSpy = jest.fn().mockReturnValue(mockState);
 
 	const mockStore = {
-		dispatch: dispatchSpy
+		dispatch: dispatchSpy,
+		getState: getStateSpy
 	};
 
 	const apiAction = {
@@ -22,6 +30,7 @@ const setup = () => {
 
 	const result = [{ id: 123 }];
 	const successfulResponse = {
+		ok: true,
 		json: () => Promise.resolve(result)
 	};
 
@@ -63,10 +72,37 @@ it("should dispatch a request action", () => {
 	expect(dispatchSpy).toBeCalledWith({ type: "REQUEST" });
 });
 
-it("should call fetch with the full URL and the configuration method", () => {
+it("should call fetch with the full URL and the configuration object", () => {
 	const { middlewareArgs, fetchStub, mockStore, nextStub, apiAction } = setup();
 	middleware(middlewareArgs)(mockStore)(nextStub)(apiAction);
-	expect(fetchStub).toBeCalledWith(`${BASE_URL}/test`, { method: "GET" });
+	expect(fetchStub).toBeCalledWith(`${BASE_URL}/test`, {
+		method: "GET",
+		mode: "cors",
+		headers: new Headers({ "Content-Type": "application/json" }),
+		body: null
+	});
+});
+
+it("should decamelize and stringify the body if provided", () => {
+	const { middlewareArgs, fetchStub, mockStore, nextStub } = setup();
+	const postAPIAction = {
+		[CALL_API]: {
+			types: ["REQUEST", "SUCCESS", "FAILURE"],
+			endpoint: "/test",
+			method: "POST",
+			body: {
+				myKey: "myValue"
+			}
+		}
+	};
+
+	middleware(middlewareArgs)(mockStore)(nextStub)(postAPIAction);
+	expect(fetchStub).toBeCalledWith(`${BASE_URL}/test`, {
+		method: "POST",
+		mode: "cors",
+		headers: new Headers({ "Content-Type": "application/json" }),
+		body: "{\"my_key\":\"myValue\"}"
+	});
 });
 
 describe("successful requests:", () => {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
 	BrowserRouter,
 	Route,
-  } from "react-router-dom";
+} from "react-router-dom";
 
 import EffortsList from "./efforts/container/EffortsList";
 import Footer from "./layout/Footer";
