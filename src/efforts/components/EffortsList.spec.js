@@ -56,20 +56,12 @@ describe("renders:", () => {
 
 describe("lifecycle:", () => {
 	describe("componentDidMount:", () => {
-		it("should call fetchEfforts if there are no efforts when the component mounts", () => {
+		it("should call fetchEfforts when the component mounts", () => {
 			const { wrapperInstance, fetchEffortsSpy } = setup();
 			const instance = wrapperInstance()
 			fetchEffortsSpy.mockClear();
 			instance.componentDidMount();
 			expect(fetchEffortsSpy.mock.calls.length).toEqual(1);
-		});
-
-		it("should not call fetchEfforts if there are efforts when the component mounts", () => {
-			const { wrapperInstance, fetchEffortsSpy } = setup({ hasEfforts: true });
-			const instance = wrapperInstance()
-			fetchEffortsSpy.mockClear();
-			instance.componentDidMount();
-			expect(fetchEffortsSpy.mock.calls.length).toEqual(0);
 		});
 	});
 });

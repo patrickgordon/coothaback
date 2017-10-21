@@ -1,7 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<script>
+		(function() {
+			if (sessionStorage.fonts) {
+				document.documentElement.classList.add('wf-active');
+			}
+		})();
+	</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -10,7 +16,22 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+	<!-- These are for font awesome 5 -->
+    <script async="async" src="%PUBLIC_URL%/light.min.js"></script>
+	<script async="async" src="%PUBLIC_URL%/fontawesome.min.js"></script>
+	<script async="async" 	src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<script async="async">
+		WebFontConfig = {
+			google: {
+				families: ['Open Sans']
+			},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		};
+	</script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
