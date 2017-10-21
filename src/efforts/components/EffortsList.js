@@ -11,11 +11,8 @@ import styles from "./EffortsList.css";
 
 export class EffortsList extends Component {
 	componentDidMount() {
-		const { hasEfforts, actions: { fetchEfforts } } = this.props;
-
-		if (!hasEfforts) {
-			fetchEfforts();
-		}
+		const { actions: { fetchEfforts } } = this.props;
+		fetchEfforts();
 	}
 
 	render() {

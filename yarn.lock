@@ -5440,6 +5440,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-cache@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/redux-cache/-/redux-cache-0.2.4.tgz#3ff98ecf1e253d9c14980c6842858f2c5f0f4063"
+
 redux-persist@^4.10.1:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.1.tgz#4fb2b789942f10f56d51cc7ad068d9d6beb46124"
