@@ -29,6 +29,7 @@
     "html-webpack-plugin": "2.29.0",
     "humps": "^2.0.1",
     "jest": "20.0.4",
+    "json-server": "^0.12.0",
     "normalizr": "^3.2.4",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -38,6 +39,7 @@
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-cache": "^0.2.4",
     "redux-persist": "^4.10.1",
@@ -53,7 +55,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "fakeapi": "json-server --watch db.json --port 3001",
+    "fakeapi": "node fakeApi/server.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },

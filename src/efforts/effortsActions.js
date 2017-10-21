@@ -14,7 +14,7 @@ export const fetchEfforts = () => (dispatch, getState) => {
 	return dispatch({
 		[CALL_API]: {
 			types: [FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE],
-			endpoint: "/efforts",
+			endpoint: "/segments/2660310/all_efforts",
 			method: "GET",
 			schema: effortList
 		}
