@@ -3,13 +3,13 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { makeGetQueryParams } from "../../utils/utilitySelectors";
+import { getIsAuthenticated } from "../authenticationSelectors";
 import { authorize as authorizeAction } from "../authenticationActions";
 
 import Icon from "../../ui/Icon";
 
 export class TokenExchange extends Component {
 	componentDidMount() {
-		// TODO: Filter query string param to get "code";
 		const {
 			actions: { authorize },
 			isAuthenticated,
@@ -36,17 +36,22 @@ export class TokenExchange extends Component {
 		return (
 			<h1>
 				<Icon iconName="cog" isSpin />
-				Please wait while we finishing your authentication...
+				Just doing some housekeeping; Will be done in a jiffy...
 			</h1>
 		);
 	}
 }
 
-export const makeMapStateToProps = (makeGetQueryParamsFn = makeGetQueryParams) => {
+export const makeMapStateToProps = (args = {}) => {
+	const {
+		getIsAuthenticatedFn = getIsAuthenticated,
+		makeGetQueryParamsFn = makeGetQueryParams
+	} = args;
+
 	const getQueryParams = makeGetQueryParamsFn();
 
 	const mapStateToProps = (state, ownProps)=> ({
-		isAuthenticated: !!(state.authentication && state.authentication.accessToken),
+		isAuthenticated: getIsAuthenticatedFn(state),
 		queryParams: getQueryParams(state, ownProps)
 	});
 

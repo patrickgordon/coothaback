@@ -22,6 +22,11 @@ const setup = (propsOverrides = {}) => {
 	};
 
 	const makeGetQueryParamsFn = () => jest.fn().mockReturnValue("QueryParamsFam");
+	const getIsAuthenticatedFn = jest.fn();
+	const mockSelectors = {
+		makeGetQueryParamsFn,
+		getIsAuthenticatedFn
+	};
 
 	const wrapper = () => shallow(<NotConnectedTokenExchange {...props} />);
 	const wrapperInstance = () => wrapper().instance();
@@ -31,7 +36,7 @@ const setup = (propsOverrides = {}) => {
 		wrapperInstance,
 		authorizeSpy,
 		pushSpy,
-		mapStateToProps: makeMapStateToProps(makeGetQueryParamsFn)
+		mapStateToProps: makeMapStateToProps(mockSelectors)
 	};
 };
 

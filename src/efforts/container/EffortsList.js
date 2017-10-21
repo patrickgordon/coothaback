@@ -2,27 +2,49 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import formatTime from "../../utils/formatTime";
 import { fetchEfforts } from "../effortsActions";
+import { getIsAuthenticated } from "../../authentication/authenticationSelectors";
 import { getMappedEfforts } from "../effortsSelectors";
 
 import styles from "./EffortsList.css";
 
 export class EffortsList extends Component {
 	componentDidMount() {
-		const { actions: { fetchEfforts } } = this.props;
-		fetchEfforts();
+		const {
+			isAuthenticated,
+			actions: { fetchEfforts }
+		} = this.props;
+
+		if (isAuthenticated) {
+			fetchEfforts();
+		}
 	}
 
 	render() {
-		const { hasEfforts, efforts } = this.props;
+		const { isAuthenticated, hasEfforts, efforts } = this.props;
+		const banter = isAuthenticated ? "No efforts on Cootha, ya choom." : "Uhh, maybe try to connect with Strava first?";
+		// TODO: Make the redirection URL dynamic based on PROD vs DEV
+		const stravaLink = "https://www.strava.com/oauth/authorize?client_id=15533&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=view_private";
 
 		return (
 			<div className="grid">
 				{!hasEfforts &&
-				<h1 data-id="noEffortsHeader" className={styles.noEfforts}>No efforts on Cootha, ya pleb.</h1>
+				<div className="col-12">
+					<h1 data-id="noEffortsHeader" className={styles.noEfforts}>{banter}</h1>
+				</div>
 				}
+
+				{!isAuthenticated &&
+					<div className="col-12">
+						<Button href={stravaLink}>
+							Connect to Strava
+						</Button>
+					</div>
+				}
+
 				{hasEfforts && efforts.map(effort => {
 					const effortTimeReadable = formatTime(effort.movingTime);
 					return (
@@ -32,14 +54,21 @@ export class EffortsList extends Component {
 								title={effortTimeReadable}
 							/>
 						</div>
-					);})}
+					);
+				})}
 			</div>
 		);
 	}
 }
 
-export const makeMapStateToProps = (getMappedEffortsFn = getMappedEfforts) => {
+export const makeMapStateToProps = (args = {}) => {
+	const {
+		getIsAuthenticatedFn = getIsAuthenticated,
+		getMappedEffortsFn = getMappedEfforts
+	} = args;
+
 	const mapStateToProps = state => ({
+		isAuthenticated: getIsAuthenticatedFn(state),
 		hasEfforts: !!(state.efforts.keys.length > 0),
 		efforts: getMappedEffortsFn(state)
 	});

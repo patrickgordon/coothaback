@@ -1,30 +1,26 @@
 import React from "react";
+import { connect } from "react-redux";
 
-import Button from "../ui/Button";
+import { getAuthenticatedAthlete } from "../authentication/authenticationSelectors";
+
 import styles from "./Header.css";
 
 const Header = () => {
-	// TODO: Make the redirection URL dynamic based on PROD vs DEV
-	const stravaLink = "https://www.strava.com/oauth/authorize?client_id=15533&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=view_private";
 	return (
 		<header className={styles.root}>
-			<div className="grid-center">
+			<div className="grid-center-noBottom">
 				<div className="col">
 					<div className={styles.title}>
 						<h1>Yeah, but what's ya cootha back time?</h1>
 					</div>
 				</div>
 			</div>
-
-			<div className="grid-center">
-				<div className="col">
-					<Button href={stravaLink}>
-							Connect to Strava
-					</Button>
-				</div>
-			</div>
 		</header>
 	);
 };
 
-export default Header;
+const mapStateToProps = state => ({
+	user: getAuthenticatedAthlete(state)
+});
+
+export default connect(mapStateToProps)(Header);

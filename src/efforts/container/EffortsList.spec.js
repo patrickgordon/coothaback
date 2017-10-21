@@ -10,6 +10,7 @@ const setup = (propsOverrides = {}) => {
 	const fetchEffortsSpy = jest.fn();
 
 	const props = {
+		isAuthenticated: false,
 		hasEfforts: false,
 		efforts: [],
 		actions: {
@@ -22,6 +23,11 @@ const setup = (propsOverrides = {}) => {
 	const wrapperInstance = () => wrapper().instance();
 
 	const getMappedEffortsFn = jest.fn();
+	const getIsAuthenticatedFn = jest.fn();
+	const mockSelectors = {
+		getMappedEffortsFn,
+		getIsAuthenticatedFn
+	};
 
 	return {
 		wrapper,
@@ -29,7 +35,7 @@ const setup = (propsOverrides = {}) => {
 		header: () => wrapper().find("[data-id='noEffortsHeader']"),
 		cards: () => wrapper().find("Card"),
 		fetchEffortsSpy,
-		mapStateToProps: makeMapStateToProps(getMappedEffortsFn)
+		mapStateToProps: makeMapStateToProps(mockSelectors)
 	};
 };
 
@@ -56,12 +62,20 @@ describe("renders:", () => {
 
 describe("lifecycle:", () => {
 	describe("componentDidMount:", () => {
-		it("should call fetchEfforts when the component mounts", () => {
-			const { wrapperInstance, fetchEffortsSpy } = setup();
+		it("should call fetchEfforts when the component mounts if the user is authenticated", () => {
+			const { wrapperInstance, fetchEffortsSpy } = setup({ isAuthenticated: true });
 			const instance = wrapperInstance();
 			fetchEffortsSpy.mockClear();
 			instance.componentDidMount();
 			expect(fetchEffortsSpy.mock.calls.length).toEqual(1);
+		});
+
+		it("should not call fetchEfforts when the component mounts if the user is not authenticated", () => {
+			const { wrapperInstance, fetchEffortsSpy } = setup({ isAuthenticated: false });
+			const instance = wrapperInstance();
+			fetchEffortsSpy.mockClear();
+			instance.componentDidMount();
+			expect(fetchEffortsSpy.mock.calls.length).toEqual(0);
 		});
 	});
 });
