@@ -1,3 +1,5 @@
+import merge from "lodash/merge";
+
 const entitiesReducer = (state = {}, action) => {
 	const entities = action && action.payload && action.payload.entities;
 
@@ -5,10 +7,7 @@ const entitiesReducer = (state = {}, action) => {
 		return state;
 	}
 
-	return {
-		...state,
-		...entities
-	};
+	return merge({}, state, entities);
 };
 
 export default entitiesReducer;
