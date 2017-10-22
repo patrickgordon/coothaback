@@ -11,6 +11,25 @@ import { getMappedEfforts } from "../effortsSelectors";
 
 import styles from "./EffortsList.css";
 
+const renderTopThreeEfforts = (topThree) => {
+	return topThree.map((effort, index) => {
+		const { movingTime, id, averageCadence, averageWatts, averageHeartrate } = effort;
+
+		const effortTimeReadable = formatTime(movingTime);
+		return (
+			<div key={id} className="col-4_xs-12_sm-6">
+				<Card
+					prNumber={index}
+					title={effortTimeReadable}
+					cadence={averageCadence}
+					watts={averageWatts}
+					heartRate={averageHeartrate}
+				/>
+			</div>
+		);
+	});
+};
+
 export class EffortsList extends Component {
 	componentDidMount() {
 		const {
@@ -25,8 +44,17 @@ export class EffortsList extends Component {
 
 	render() {
 		const { isAuthenticated, hasEfforts, efforts } = this.props;
-		const banter = isAuthenticated ? "No efforts on Cootha, ya choom." : "Uhh, maybe try to connect with Strava first?";
+		const banter = isAuthenticated ? "Couldn't find any efforts on Cootha." : "Connect with Strava first...";
 		const stravaLink = `https://www.strava.com/oauth/authorize?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_STRAVA_REDIRECT_URL}&scope=view_private`;
+
+		// TODO: add tests
+		let topThree = [];
+		// let others = [];
+
+		if (hasEfforts) {
+			topThree = efforts.slice(0, 3);
+			// others = efforts.slice(3);
+		}
 
 		return (
 			<div className="grid">
@@ -44,17 +72,7 @@ export class EffortsList extends Component {
 					</div>
 				}
 
-				{hasEfforts && efforts.map(effort => {
-					const effortTimeReadable = formatTime(effort.movingTime);
-					return (
-						<div key={effort.id} className="col-4_xs-12_sm-6">
-							<Card
-								pillContent="Personal Best"
-								title={effortTimeReadable}
-							/>
-						</div>
-					);
-				})}
+				{hasEfforts && renderTopThreeEfforts(topThree)}
 			</div>
 		);
 	}
