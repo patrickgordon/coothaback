@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import Button from "../../ui/Button";
 import Card from "../../ui/Card";
+import Button from "../../ui/Button";
 import formatTime from "../../utils/formatTime";
 import { fetchEfforts } from "../effortsActions";
 import { getIsAuthenticated } from "../../authentication/authenticationSelectors";
