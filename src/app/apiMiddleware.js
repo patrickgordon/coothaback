@@ -2,9 +2,7 @@ import { camelizeKeys, decamelizeKeys } from "humps";
 import { normalize } from "normalizr";
 
 export const CALL_API = "callAPI";
-// TODO: Switch this based on node_env to https://www.strava.com/api/v3 ...
-export const BASE_URL = "https://www.strava.com/api/v3";
-// export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const middleware = (middlewareArgs = {}) => store => next => action => {
 	const apiAction = action[CALL_API];

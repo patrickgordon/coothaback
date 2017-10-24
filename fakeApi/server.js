@@ -12,7 +12,7 @@ server.use(jsonServer.bodyParser);
 
 server.use(jsonServer.rewriter({
 	"/oauth/token": "/token",
-	"/segments/2660310/all_efforts": "/efforts"
+	"/segments/2660310/all_efforts\\?athlete_id=:id": "/efforts"
 }));
 
 // This will make a POST behave like a GET for the token route.
