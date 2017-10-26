@@ -11,6 +11,7 @@ import GroupsList from "./groups/container/GroupsList";
 import Header from "./layout/Header";
 import Navigation from "./navigation/Navigation";
 import TokenExchange from "./authentication/container/TokenExchange";
+import protectedRoute from "./authentication/protectedRoute";
 
 import styles from "./App.css";
 
@@ -25,8 +26,7 @@ class App extends Component {
 					<div className={styles.content}>
 						<Switch>
 							<Route path="/" exact component={EffortsList} />
-							{/* TODO: Make this a protected route */}
-							<Route path="/groups" exact component={GroupsList} />
+							<Route path="/groups" exact component={protectedRoute(GroupsList)} />
 							<Route path="/token_exchange" exact component={TokenExchange} />
 						</Switch>
 					</div>
