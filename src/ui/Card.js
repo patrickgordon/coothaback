@@ -5,19 +5,31 @@ import styles from "./Card.css";
 const CardHeader = ({ children }) => {
 	if (!children) { return null; };
 
-	return children;
+	return (
+		<div className={styles.header}>
+			{children}
+		</div>
+	);
 };
 
 const CardIcons = ({ children }) => {
 	if (!children) { return null; };
 
-	return children;
+	return (
+		<div className={styles.icons}>
+			{children}
+		</div>
+	);
 };
 
 const CardContent = ({ children }) => {
 	if (!children) { return null; };
 
-	return children;
+	return (
+		<div className={styles.content}>
+			{children}
+		</div>
+	);
 };
 
 const Card = ({ contentComponent, headerComponent, iconsComponent }) => {

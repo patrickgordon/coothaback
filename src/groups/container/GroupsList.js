@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import Card from "../../ui/Card";
 import { fetchGroups as fetchGroupsAction } from "../groupsActions";
 import { getMappedGroups } from "../groupsSelectors";
 
@@ -11,12 +12,28 @@ export class GroupsList extends Component {
 		fetchGroups();
 	}
 
-	render() {
+	renderGroups = () => {
 		const { groups } = this.props;
+		return groups.map(group => {
+			const { id, name } = group;
+
+			const content = (
+				<div>{name}</div>
+			);
+
+			return (
+				<div key={id}>
+					<Card contentComponent={content} />
+				</div>
+			);
+		});
+	}
+
+	render() {
 		return (
-			<ul>
-				{groups.map(group => (<li>{group.name}</li>))}
-			</ul>
+			<div>
+				{this.renderGroups()}
+			</div>
 		);
 	}
 }
