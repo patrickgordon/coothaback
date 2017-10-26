@@ -7,6 +7,7 @@ import Card from "../../ui/Card";
 import EffortContent from "../components/EffortContent";
 import EffortHeader from "../components/EffortHeader";
 import EffortIcons from "../components/EffortIcons";
+import formatDate from "../../utils/formatDate";
 import formatTime from "../../utils/formatTime";
 import { fetchEfforts } from "../effortsActions";
 import { getIsAuthenticated } from "../../authentication/authenticationSelectors";
@@ -19,8 +20,9 @@ const renderTopThreeEfforts = (topThree) => {
 		const { movingTime, id, averageCadence, averageWatts, averageHeartrate, startDateLocal } = effort;
 
 		const effortTimeReadable = formatTime(movingTime);
+		const effortDateReadable = formatDate(startDateLocal);
 		const header = (<EffortHeader prNumber={index} />);
-		const content = (<EffortContent title={effortTimeReadable} date={startDateLocal} />);
+		const content = (<EffortContent title={effortTimeReadable} date={effortDateReadable} />);
 		const icons = (<EffortIcons watts={averageWatts} heartRate={averageHeartrate} cadence={averageCadence} />);
 
 		return (

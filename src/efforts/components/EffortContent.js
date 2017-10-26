@@ -7,7 +7,7 @@ const EffortContent = ({ title, date }) => {
 		<div className={styles.title}>
 			<div style={{ textAlign: "center" }}>
 				<h3 style={{ margin: "0px" }}>{title}</h3>
-				<h5 style={{ margin: "12px 0px" }}>16 December 2016</h5>
+				<h5 style={{ margin: "12px 0px" }}>{date}</h5>
 			</div>
 		</div>
 	);
