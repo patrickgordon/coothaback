@@ -10,6 +10,9 @@ const effort = new schema.Entity("efforts", {
 	segment
 });
 
-export const authentication = new schema.Entity("authentication", { athlete }, { idAttribute: "accessToken" } );
-
 export const effortList = new schema.Array(effort);
+
+const group = new schema.Entity("groups");
+export const groupList = new schema.Array(group);
+
+export const authentication = new schema.Entity("authentication", { athlete }, { idAttribute: "accessToken" } );

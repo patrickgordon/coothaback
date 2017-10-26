@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
+import EffortContent from "../components/EffortContent";
+import EffortHeader from "../components/EffortHeader";
+import EffortIcons from "../components/EffortIcons";
 import formatTime from "../../utils/formatTime";
 import { fetchEfforts } from "../effortsActions";
 import { getIsAuthenticated } from "../../authentication/authenticationSelectors";
@@ -13,17 +16,19 @@ import styles from "./EffortsList.css";
 
 const renderTopThreeEfforts = (topThree) => {
 	return topThree.map((effort, index) => {
-		const { movingTime, id, averageCadence, averageWatts, averageHeartrate } = effort;
+		const { movingTime, id, averageCadence, averageWatts, averageHeartrate, startDateLocal } = effort;
 
 		const effortTimeReadable = formatTime(movingTime);
+		const header = (<EffortHeader prNumber={index} />);
+		const content = (<EffortContent title={effortTimeReadable} date={startDateLocal} />);
+		const icons = (<EffortIcons watts={averageWatts} heartRate={averageHeartrate} cadence={averageCadence} />);
+
 		return (
 			<div key={id} className="col-4_xs-12_sm-6">
 				<Card
-					prNumber={index}
-					title={effortTimeReadable}
-					cadence={averageCadence}
-					watts={averageWatts}
-					heartRate={averageHeartrate}
+					headerComponent={header}
+					contentComponent={content}
+					iconsComponent={icons}
 				/>
 			</div>
 		);

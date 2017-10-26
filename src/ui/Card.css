@@ -14,31 +14,6 @@
 	box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
 }
 
-.header { 
-	min-height: 5rem;
-	border-top-left-radius: 0.375rem;
-	border-top-right-radius: 0.375rem;
-	background-color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 120px;
-	padding: 24px 24px 12px 4px;
-}
-
-.goldIcon {
-	color: rgb(254, 200, 53);
-}
-
-.silverIcon {
-	color: #A8A8A8;
-}
-
-.bronzeIcon {
-	color: #965A38;
-}
-
-
 /*
 .overlay {
 	background-color: rgba(2, 128, 144, 0.7);
@@ -69,19 +44,3 @@
 	background-color: #292F36;
 }
 */
-
-.title {	
-	padding: 12px;
-	/* height: 5.25rem; */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.icons {
-	padding: 12px 12px 24px 12px;	
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	color: #028090;
-}

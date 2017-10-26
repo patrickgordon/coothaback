@@ -1,0 +1,7 @@
+.icons {
+	padding: 12px 12px 24px 12px;	
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	color: #028090;
+}
