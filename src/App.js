@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import {
 	BrowserRouter,
-	Route,
+	Switch,
+	Route
 } from "react-router-dom";
 
 import EffortsList from "./efforts/container/EffortsList";
 import Footer from "./layout/Footer";
+import GroupsList from "./groups/container/GroupsList";
 import Header from "./layout/Header";
+import Navigation from "./navigation/Navigation";
 import TokenExchange from "./authentication/container/TokenExchange";
 
 import styles from "./App.css";
@@ -17,10 +20,15 @@ class App extends Component {
 			<BrowserRouter>
 				<div className={styles.root}>
 					<Header />
+					<Navigation />
 
 					<div className={styles.content}>
-						<Route path="/" exact component={EffortsList} />
-						<Route path="/token_exchange" exact component={TokenExchange} />
+						<Switch>
+							<Route path="/" exact component={EffortsList} />
+							{/* TODO: Make this a protected route */}
+							<Route path="/groups" exact component={GroupsList} />
+							<Route path="/token_exchange" exact component={TokenExchange} />
+						</Switch>
 					</div>
 
 					<Footer />
