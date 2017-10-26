@@ -30,9 +30,14 @@ export class GroupsList extends Component {
 	}
 
 	render() {
+		const { hasGroups } = this.props;
+
 		return (
 			<div>
-				{this.renderGroups()}
+				{!hasGroups &&
+				<h1 data-id="noGroupsHeader" style={{ margin: 0 }}>Hey, no friends! Guess what? You got no friends.</h1>
+				}
+				{hasGroups && this.renderGroups()}
 			</div>
 		);
 	}
