@@ -25,7 +25,7 @@ export class ClubsList extends Component {
 			const header = (<ClubHeader imageSrc={profile} />);
 
 			return (
-				<div key={id}>
+				<div key={id} className="col-4_xs-12_sm-6">
 					<Card contentComponent={content} headerComponent={header} />
 				</div>
 			);
@@ -36,9 +36,11 @@ export class ClubsList extends Component {
 		const { hasClubs } = this.props;
 
 		return (
-			<div>
+			<div className="grid">
 				{!hasClubs &&
-				<h1 data-id="noClubsHeader" style={{ margin: 0 }}>Hey, no friends! Guess what? You got no friends.</h1>
+				<div className="col-12">
+					<h1 data-id="noClubsHeader" style={{ margin: 0 }}>Hey, no friends! Guess what? You got no friends.</h1>
+				</div>
 				}
 				{hasClubs && this.renderClubs()}
 			</div>
