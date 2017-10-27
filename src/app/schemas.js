@@ -12,7 +12,7 @@ const effort = new schema.Entity("efforts", {
 
 export const effortList = new schema.Array(effort);
 
-const group = new schema.Entity("groups");
-export const groupList = new schema.Array(group);
+const club = new schema.Entity("clubs");
+export const clubList = new schema.Array(club);
 
 export const authentication = new schema.Entity("authentication", { athlete }, { idAttribute: "accessToken" } );

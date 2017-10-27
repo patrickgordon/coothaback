@@ -7,7 +7,7 @@ import {
 
 import EffortsList from "./efforts/container/EffortsList";
 import Footer from "./layout/Footer";
-import GroupsList from "./groups/container/GroupsList";
+import ClubsList from "./clubs/container/ClubsList";
 import Header from "./layout/Header";
 import Navigation from "./navigation/Navigation";
 import TokenExchange from "./authentication/container/TokenExchange";
@@ -26,7 +26,7 @@ class App extends Component {
 					<div className={styles.content}>
 						<Switch>
 							<Route path="/" exact component={EffortsList} />
-							<Route path="/groups" exact component={protectedRoute(GroupsList)} />
+							<Route path="/clubs" exact component={protectedRoute(ClubsList)} />
 							<Route path="/token_exchange" exact component={TokenExchange} />
 						</Switch>
 					</div>

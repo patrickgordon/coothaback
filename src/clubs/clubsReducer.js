@@ -3,14 +3,14 @@ import { DEFAULT_KEY, generateCacheTTL } from "redux-cache";
 import {
 	FETCH_REQUEST,
 	FETCH_SUCCESS
-} from "./groupsActions";
+} from "./clubsActions";
 
 const initialState = {
 	[DEFAULT_KEY]: null,
 	keys: []
 };
 
-export const groupsReducer = (state = initialState, action) => {
+export const clubsReducer = (state = initialState, action) => {
 	switch (action.type) {
 	case FETCH_SUCCESS:
 		return {
@@ -25,4 +25,4 @@ export const groupsReducer = (state = initialState, action) => {
 	}
 };
 
-export default groupsReducer;
+export default clubsReducer;

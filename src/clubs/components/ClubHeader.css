@@ -1,0 +1,11 @@
+.root { 
+	min-height: 5rem;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.profile {
+	width: 80%;
+}
