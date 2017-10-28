@@ -24,6 +24,7 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 		method,
 		schema,
 		body,
+		meta = {}
 	} = apiAction;
 
 	const [requestType, successType, failureType] = types;
@@ -50,7 +51,13 @@ export const middleware = (middlewareArgs = {}) => store => next => action => {
 	return fetchFn(fullURL, config).then(response => {
 		if (response.ok) {
 			return response.json().then(json => {
-				const data = camelizeKeys(json);
+				const { args = {} } = meta;
+
+				const data = {
+					...camelizeKeys(json),
+					...args
+				};
+
 				const normalizedData = normalizeFn(data, schema);
 
 				dispatch({
