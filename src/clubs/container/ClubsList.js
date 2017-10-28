@@ -16,7 +16,7 @@ export class ClubsList extends Component {
 	renderClubs = () => {
 		const { clubs } = this.props;
 		return clubs.map(club => {
-			const { id, name, profile } = club;
+			const { id, url, name, profile } = club;
 
 			const content = (
 				<div>{name}</div>
@@ -26,7 +26,7 @@ export class ClubsList extends Component {
 
 			return (
 				<div key={id} className="col-4_xs-12_sm-6">
-					<Card contentComponent={content} headerComponent={header} />
+					<Card linkTo={`/clubs/${url}`} contentComponent={content} headerComponent={header} />
 				</div>
 			);
 		});

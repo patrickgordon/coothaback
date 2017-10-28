@@ -27,6 +27,11 @@
 	padding: 12px;
 }
 
+.link {
+	text-decoration: none;
+	color: #292F36;
+}
+
 /*
 .overlay {
 	background-color: rgba(2, 128, 144, 0.7);

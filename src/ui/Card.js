@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./Card.css";
 
@@ -32,18 +33,30 @@ const CardContent = ({ children }) => {
 	);
 };
 
-const Card = ({ contentComponent, headerComponent, iconsComponent }) => {
+const Card = (props) => {
+	const {
+		linkTo,
+		contentComponent,
+		headerComponent,
+		iconsComponent
+	} = props;
+
+	const Component = linkTo ? Link : "div";
+	const linkProps = linkTo ? { to: linkTo } : {};
+
 	return (
 		<div className={styles.root}>
-			<CardHeader>
-				{headerComponent}
-			</CardHeader>
-			<CardContent>
-				{contentComponent}
-			</CardContent>
-			<CardIcons>
-				{iconsComponent}
-			</CardIcons>
+			<Component className={styles.link} {...linkProps}>
+				<CardHeader>
+					{headerComponent}
+				</CardHeader>
+				<CardContent>
+					{contentComponent}
+				</CardContent>
+				<CardIcons>
+					{iconsComponent}
+				</CardIcons>
+			</Component>
 		</div>
 	);
 };
