@@ -11,5 +11,5 @@ export const getMappedClubs = createSelector(
 
 export const makeGetClubBySlug = () => createSelector(
 	[getMappedClubs, getSlug],
-	(clubs, slug) => clubs.find(club => club.url === slug)
+	(clubs, slug) => clubs.find(club => club.slug === slug)
 );

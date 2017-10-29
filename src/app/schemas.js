@@ -1,3 +1,4 @@
+import kebabCase from "lodash/kebabCase";
 import { schema } from "normalizr";
 
 const athlete = new schema.Entity("athletes");
@@ -21,8 +22,16 @@ export const leaderboard = new schema.Entity("leaderboard", {
 	idAttribute: value => value.clubId ? value.clubId : "following"
 });
 
-
-const club = new schema.Entity("clubs");
+const processClub = (entity) => {
+	const slug = entity.url ? entity.url : kebabCase(entity.name);
+	return {
+		...entity,
+		slug
+	};
+};
+const club = new schema.Entity("clubs", {}, {
+	processStrategy: processClub
+});
 export const clubList = new schema.Array(club);
 
 export const authentication = new schema.Entity("authentication", { athlete }, { idAttribute: "accessToken" } );
