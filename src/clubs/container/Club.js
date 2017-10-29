@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import Leaderboard from "../../leaderboard/components/Leaderboard";
+import LeaderboardItem from "../../leaderboard/components/LeaderboardItem";
 import { fetchClubLeaderboard as fetchClubLeaderboardAction } from "../../leaderboard/leaderboardActions";
 import { makeGetClubBySlug } from "../clubsSelectors";
 import { makeGetEntriesForClubId } from "../../leaderboard/leaderboardSelectors";
@@ -21,7 +23,7 @@ class Club extends Component {
 	}
 
 	render() {
-		const { entries } = this.props;
+		const { entries, club } = this.props;
 		const hasEntries = entries.length > 0;
 		return (
 			<div className="grid">
@@ -31,7 +33,17 @@ class Club extends Component {
 				</div>
 				}
 
-				{hasEntries && entries.map(entry => entry.athleteName)}
+				{hasEntries &&
+				<div className="col-12">
+					<h1 style={{ margin: 0 }}>{club.name}</h1>
+				</div>
+				}
+
+				{hasEntries &&
+				<Leaderboard>
+					{entries.map(entry => <LeaderboardItem key={entry.effortId} entry={entry} />)}
+				</Leaderboard>
+				}
 			</div>
 		);
 	}
