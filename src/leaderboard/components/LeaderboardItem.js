@@ -15,13 +15,13 @@ const LeaderboardItem = ({ entry }) => {
 				#{entry.rank}
 			</div>
 			<div className={styles.details}>
-				<div>
+				<div className={styles.name}>
 					{entry.athleteName}
 				</div>
-				<div>
+				<div className={styles.time}>
 					{effortTimeReadable}
 				</div>
-				<div>
+				<div className={styles.date}>
 					{effortDateReadable}
 				</div>
 			</div>
