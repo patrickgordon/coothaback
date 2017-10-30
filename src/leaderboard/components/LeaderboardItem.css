@@ -5,10 +5,18 @@
 	border-bottom: 1px solid #efefef;
 	display: flex;
 	justify-content: space-between;
+	background-color: #ffffff;
 }
 
 .root:last-of-type {
 	border-bottom: none;
+}
+
+.isAthlete {
+	box-shadow: 0px 0px 25px 3px rgba(46, 61, 73, .2);
+	background-color: rgba(255, 230, 109, 1);
+	border-bottom: none;
+	margin: 24px -12px;
 }
 
 .rank {
