@@ -27,13 +27,15 @@
 	}
 }
 
-
-
-.time, .date {
+.name, .time, .date {
 	display: flex;
 
 	@media medium {
 		justify-content: center;
 		width: 33%;
 	}
+}
+
+.name {
+	justify-content: flex-start;
 }
