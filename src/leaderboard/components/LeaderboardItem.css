@@ -27,7 +27,9 @@
 	}
 }
 
-.name, .time, .date {
+
+
+.time, .date {
 	display: flex;
 
 	@media medium {
