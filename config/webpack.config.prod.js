@@ -1,6 +1,3 @@
-
-
-const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -190,16 +187,7 @@ module.exports = {
 												plugins: () => [
 													require("postcss-cssnext"),
 													require("postcss-icss-values"),
-													require("postcss-flexbugs-fixes"),
-													autoprefixer({
-														browsers: [
-															">1%",
-															"last 4 versions",
-															"Firefox ESR",
-															"not ie < 9", // React doesn't support IE8 anyway
-														],
-														flexbox: "no-2009",
-													}),
+													require("postcss-flexbugs-fixes")
 												],
 											},
 										},
@@ -230,16 +218,7 @@ module.exports = {
 									plugins: () => [
 										require("postcss-cssnext"),
 										require("postcss-icss-values"),
-										require("postcss-flexbugs-fixes"),
-										autoprefixer({
-											browsers: [
-												">1%",
-												"last 4 versions",
-												"Firefox ESR",
-												"not ie < 9", // React doesn't support IE8 anyway
-											],
-											flexbox: "no-2009",
-										}),
+										require("postcss-flexbugs-fixes")
 									],
 								},
 							},
