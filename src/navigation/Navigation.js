@@ -12,6 +12,10 @@ const navItems = [
 		text: "My Results"
 	},
 	{
+		to: "/following",
+		text: "Following"
+	},
+	{
 		to: "/clubs",
 		text: "Clubs"
 	}

@@ -13,7 +13,9 @@ const effort = new schema.Entity("efforts", {
 
 export const effortList = new schema.Array(effort);
 
-const entry = new schema.Entity("entries", {}, { idAttribute: "effortId" });
+const entry = new schema.Entity("entries", {}, {
+	idAttribute: (value, parent) => parent.clubId ? `${value.effortId}-${parent.clubId}` : `${value.effortId}-following`
+});
 const entryList = new schema.Array(entry);
 
 export const leaderboard = new schema.Entity("leaderboard", {

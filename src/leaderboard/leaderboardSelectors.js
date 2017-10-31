@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 import { makeGetClubBySlug } from "../clubs/clubsSelectors";
 
-const getLeaderboardEntries = state => state.entities.entries;
-const getLeaderboards = state => state.entities.leaderboard;
+const getLeaderboardEntries = state => state.entities && state.entities.entries;
+const getLeaderboards = state => state.entities && state.entities.leaderboard;
+const getLeaderboardForFollowing = state => state.entities && state.entities.leaderboard && state.entities.leaderboard.following;
 
 const makeGetLeaderboardForClubId = () => {
 	const getClubBySlug = makeGetClubBySlug();
@@ -31,3 +32,14 @@ export const makeGetEntriesForClubId = () => {
 		}
 	);
 };
+
+export const getEntriesForFollowers = createSelector(
+	[getLeaderboardForFollowing, getLeaderboardEntries],
+	(leaderboard, entries) => {
+		if (leaderboard) {
+			return leaderboard.entries.map(entry => entries[entry]);
+		}
+
+		return [];
+	}
+);

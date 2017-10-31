@@ -3,9 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import Leaderboard from "../../leaderboard/components/Leaderboard";
-import LeaderboardItem from "../../leaderboard/components/LeaderboardItem";
 import { fetchClubLeaderboard as fetchClubLeaderboardAction } from "../../leaderboard/leaderboardActions";
-import { getAuthenticatedAthlete } from "../../authentication/authenticationSelectors";
 import { makeGetClubBySlug } from "../clubsSelectors";
 import { makeGetEntriesForClubId } from "../../leaderboard/leaderboardSelectors";
 
@@ -21,22 +19,6 @@ class Club extends Component {
 			fetchClubLeaderboard(clubId);
 		}
 
-	}
-
-	renderEntries = () => {
-		const { entries, athlete } = this.props;
-		const { id } = athlete;
-		return entries.map(entry => {
-			const isAthlete = id === entry.athleteId;
-
-			return (
-				<LeaderboardItem
-					key={entry.effortId}
-					isAthlete={isAthlete}
-					entry={entry}
-				/>
-			);
-		});
 	}
 
 	render() {
@@ -57,9 +39,7 @@ class Club extends Component {
 				}
 
 				{hasEntries &&
-				<Leaderboard>
-					{this.renderEntries()}
-				</Leaderboard>
+				<Leaderboard entries={entries} />
 				}
 			</div>
 		);
@@ -72,8 +52,7 @@ const makeMapStateToProps = () => {
 
 	const mapStateToProps = (state, ownProps) => ({
 		club: getClubBySlug(state, ownProps),
-		entries: getEntriesForClubId(state, ownProps),
-		athlete: getAuthenticatedAthlete(state)
+		entries: getEntriesForClubId(state, ownProps)
 	});
 
 	return mapStateToProps;

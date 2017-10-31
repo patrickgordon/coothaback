@@ -15,6 +15,7 @@ server.use(jsonServer.rewriter({
 	"/oauth/token": "/token",
 	"/segments/2660310/all_efforts\\?athlete_id=:id": "/efforts",
 	"/segments/2660310/leaderboard\\?club_id=:id": "/club_efforts",
+	"/segments/2660310/leaderboard\\?following=true": "/following",
 	"/athlete/clubs": "/clubs"
 }));
 

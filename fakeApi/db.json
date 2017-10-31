@@ -2165,5 +2165,44 @@
 			"entry_count": 0,
 			"entries": []
 		}
+	},
+	"following": {
+		"entry_count": 27,
+		"entries": [
+			{
+				"athlete_name": "Jack Elkins - Charlie Cools Racing",
+				"athlete_id": 11526368,
+				"athlete_gender": "M",
+				"average_hr": null,
+				"average_watts": 399.7,
+				"distance": 2165.7,
+				"elapsed_time": 443,
+				"moving_time": 443,
+				"start_date": "2017-01-08T19:35:22Z",
+				"start_date_local": "2017-01-09T05:35:22Z",
+				"activity_id": 825789396,
+				"effort_id": 20151845629,
+				"rank": 1,
+				"neighborhood_index": 0,
+				"athlete_profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/11526368/3747070/4/large.jpg"
+			},
+			{
+				"athlete_name": "Patrick Gordon -  Charlie Cools",
+				"athlete_id": 7163473,
+				"athlete_gender": "M",
+				"average_hr": 175.5,
+				"average_watts": 293.7,
+				"distance": 2238.5,
+				"elapsed_time": 570,
+				"moving_time": 570,
+				"start_date": "2016-12-13T19:52:32Z",
+				"start_date_local": "2016-12-14T05:52:32Z",
+				"activity_id": 801597068,
+				"effort_id": 19574330114,
+				"rank": 2,
+				"neighborhood_index": 1,
+				"athlete_profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/7163473/5262563/1/large.jpg"
+			}
+		]
 	}
 }
