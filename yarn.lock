@@ -5863,9 +5863,9 @@ reduce-function-call@^1.0.1, reduce-function-call@^1.0.2:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-cache@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/redux-cache/-/redux-cache-0.2.4.tgz#3ff98ecf1e253d9c14980c6842858f2c5f0f4063"
+redux-cache@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/redux-cache/-/redux-cache-0.3.0.tgz#1e5cca40cef9e8448cf5877d86fc20c3d7963af3"
 
 redux-persist@^4.10.1:
   version "4.10.1"

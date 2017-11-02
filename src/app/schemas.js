@@ -1,3 +1,4 @@
+import { generateCacheTTL, DEFAULT_KEY } from "redux-cache";
 import kebabCase from "lodash/kebabCase";
 import { schema } from "normalizr";
 
@@ -18,10 +19,15 @@ const entry = new schema.Entity("entries", {}, {
 });
 const entryList = new schema.Array(entry);
 
+const processLeaderboard = entity => ({
+	...entity,
+	[DEFAULT_KEY]: generateCacheTTL()
+});
 export const leaderboard = new schema.Entity("leaderboard", {
 	entries: entryList
 }, {
-	idAttribute: value => value.clubId ? value.clubId : "following"
+	idAttribute: value => value.clubId ? value.clubId : "following",
+	processStrategy: processLeaderboard
 });
 
 const processClub = (entity) => {
