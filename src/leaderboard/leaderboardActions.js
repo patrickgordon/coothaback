@@ -18,14 +18,14 @@ export const fetchFollowingLeaderboard = () => (dispatch, getState) => {
 	const isCacheValid = checkCacheValid(getState, "entities", { accessStrategy });
 	if (isCacheValid) { return null; }
 
-	return {
+	return dispatch({
 		[CALL_API]: {
 			types: [FETCH_FOLLOWING_LEADERBOARD_REQUEST, FETCH_FOLLOWING_LEADERBOARD_SUCCESS, FETCH_FOLLOWING_LEADERBOARD_FAILURE],
 			endpoint: "/segments/2660310/leaderboard?following=true",
 			method: "GET",
 			schema: leaderboard
 		}
-	};
+	});
 };
 
 export const FETCH_CLUB_LEADERBOARD_REQUEST = "Leaderboards.FETCH_CLUB_LEADERBOARD_REQUEST";
